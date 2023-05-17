@@ -11,19 +11,21 @@ import java.sql.SQLException;
 
 public class ConexaoDAO {
     
-    public Connection conexaoBD(){
+    public Connection conexaoBD() throws ClassNotFoundException{
         
         Connection con = null;
         
         
         try {
-            String url = "jdbc:mysql//localhost:3307/sistema_biblioteca?user=root&password=";
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3307/sistema_biblioteca?user=root&password=";
             con = DriverManager.getConnection(url);
             
             
         } catch (SQLException e) {
             
-            System.out.println("Erro de conexão com o Banco de Dados");
+            System.out.println("Erro de conexão com o BD (ConexaoDAO)");
         }
         
         return con;
