@@ -25,11 +25,11 @@
                 LivroDAO objLivroDAO = new LivroDAO();
                 objLivroDAO.ExcluirLivro(objLivroDTO);
 
-                out.Println("Livro excluido com sucesso!");
+                out.println("Livro excluido com sucesso!");
 
             } catch (Exception e) {
 
-                out.Println(e);
+                out.println(e);
             }
 
 
