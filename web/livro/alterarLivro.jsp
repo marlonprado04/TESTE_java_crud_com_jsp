@@ -22,14 +22,17 @@
                 objLivroDTO.setId_livro(
                         Integer.parseInt(request.getParameter("id")));
 
-                LivroDAO objLivroDAO = new LivroDAO();
-                objLivroDAO.ExcluirLivro(objLivroDTO);
+                objLivroDTO.setNome_livro(
+                        request.getParameter("nome"));
 
-                out.Println("Livro excluido com sucesso!");
+                LivroDAO objLivroDAO = new LivroDAO();
+                objLivroDAO.AlterarLivro(objLivroDTO);
+
+                out.println("Livro alterado com sucesso!");
 
             } catch (Exception e) {
 
-                out.Println(e);
+                out.println(e);
             }
 
 

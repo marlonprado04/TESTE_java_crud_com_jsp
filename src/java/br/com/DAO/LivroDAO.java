@@ -1,4 +1,3 @@
-
 package br.com.DAO;
 
 import br.com.DTO.LivroDTO;
@@ -8,10 +7,8 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+public class LivroDAO {
 
-public class LivroDAO{
-    
-    
     //Criando variável para passar a conexão do banco de dados
     //fora do método para poder usá-la universalmente
     Connection con;
@@ -21,90 +18,111 @@ public class LivroDAO{
     PreparedStatement pstm;
     ResultSet rs;
     ArrayList<LivroDTO> lista = new ArrayList<>();
- 
+
     // Criando método para cadastrar os livros
-    public void CadastrarLivro(LivroDTO objLivroDTO) throws ClassNotFoundException{
-        
+    public void CadastrarLivro(LivroDTO objLivroDTO) throws ClassNotFoundException {
+
         // criando variável para comando SQL
         String sql = "insert into livro (nome_livro) values (?)";
-        
+
         // Atribuindo o método de conexão da classe java 
         // para a variável criada mais acima
         con = new ConexaoDAO().conexaoBD();
-        
+
         try {
-            
+
             pstm = con.prepareStatement(sql);
             pstm.setString(1, objLivroDTO.getNome_livro());
-            
-            pstm.execute();           
+
+            pstm.execute();
             pstm.close();
-            
+
         } catch (SQLException e) {
-            
+
             System.out.println("Erro de conexão com o BD no método CadastrarLivro (LivroDAO.java)");
         }
     }
- 
-    public ArrayList<LivroDTO> PesquisarLivro() throws ClassNotFoundException{
-        
+
+    public ArrayList<LivroDTO> PesquisarLivro() throws ClassNotFoundException {
+
         String sql = "select *  from livro";
-        
+
         // Atribuindo o método de conexão da classe java 
         // para a variável criada mais acima
         con = new ConexaoDAO().conexaoBD();
-        
+
         try {
-            
+
             pstm = con.prepareStatement(sql);
             rs = pstm.executeQuery(sql);
-            
-            while (rs.next()){
-                
+
+            while (rs.next()) {
+
                 // Criando objeto a partir da classe DTO (get e set do bd)
                 // e passando as informações do resultado da query para uma variável
                 // do resultset
-  
                 LivroDTO objLivroDTO = new LivroDTO();
                 objLivroDTO.setId_livro(rs.getInt("id_livro"));
                 objLivroDTO.setNome_livro(rs.getString("nome_livro"));
-                
-                
+
                 lista.add(objLivroDTO);
-                
 
             }
-            
-            
+
         } catch (SQLException e) {
-            
+
             System.out.println("Erro no método PesquisarLivro (LivroDAO)");
         }
-        
+
         return lista;
-        
-        }
-    
-    public void ExcluirLivro(LivroDTO objLivroDTO) throws ClassNotFoundException{
-        
+
+    }
+
+    public void ExcluirLivro(LivroDTO objLivroDTO) throws ClassNotFoundException {
+
         // criando variável para comando SQL
         String sql = "delete from livro where id_livro = ?";
-        
+
         // Atribuindo o método de conexão da classe java 
         // para a variável criada mais acima
         con = new ConexaoDAO().conexaoBD();
-        
+
         try {
-            
+
             pstm = con.prepareStatement(sql);
             pstm.setInt(1, objLivroDTO.getId_livro());
-            
-            pstm.execute();           
+
+            pstm.execute();
             pstm.close();
-            
+
         } catch (SQLException e) {
-            
+
             System.out.println("Erro de conexão com o BD no método Excluir Livro (LivroDAO.java)");
         }
     }
+
+    public void AlterarLivro(LivroDTO objLivroDTO) throws ClassNotFoundException {
+
+        // criando variável para comando SQL
+        String sql = "update livro set nome_livro = ? where id_livro = ?";
+
+        // Atribuindo o método de conexão da classe java 
+        // para a variável criada mais acima
+        con = new ConexaoDAO().conexaoBD();
+
+        try {
+
+            pstm = con.prepareStatement(sql);
+            pstm.setString(1, objLivroDTO.getNome_livro());
+            pstm.setInt(2, objLivroDTO.getId_livro());
+
+            pstm.execute();
+            pstm.close();
+
+        } catch (SQLException e) {
+
+            System.out.println(e);
+        }
+    }
+
 }

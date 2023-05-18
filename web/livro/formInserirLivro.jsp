@@ -1,8 +1,11 @@
+<%-- 
+    Document   : formInserirLivro
+    Created on : 18 de mai. de 2023, 15:31:56
+    Author     : marlo
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
 <html>
     <head>
         <title>TODO supply a title</title>
@@ -18,7 +21,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <button type="submit">CADASTRAR</button>
  
         </form>
-        
+        <br>
+        <form action="listarLivro.jsp" method="POST"> <button type="submit">Listar livro</button></form>
+        <form action="formInserirLivro.jsp" method="POST"> <button type="submit">Inserir livro</button></form>
+
         
     </body>
 </html>

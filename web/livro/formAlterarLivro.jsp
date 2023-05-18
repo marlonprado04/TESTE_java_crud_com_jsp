@@ -12,17 +12,20 @@
         <title>JSP Page</title>
     </head>
     <body>
-         <form action="excluirLivro.jsp" method="POST">
-             
+        <form action="alterarLivro.jsp" method="POST">
+
             <label>Código do Livro: </label> <br>
             <input type="text" name="id" 
-                   value="<%=request.getParameter("id") %>"> <br>
-            
+                   value="<%=request.getParameter("id")%>"> <br>
+
             <label>Nome do Livro: </label> <br>
             <input type="text" name="nome" 
-                   value="<%=request.getParameter("nome") %>"><br>
-            <button type="submit">Excluir</button>
- 
+                   value="<%=request.getParameter("nome")%>"><br>
+            <button type="submit">Alterar</button>
+
+            <br>
+            <form action="listarLivro.jsp" method="POST"> <button type="submit">Listar livro</button></form>
+            <form action="formInserirLivro.jsp" method="POST"> <button type="submit">Inserir livro</button></form> 
         </form>
     </body>
 </html>

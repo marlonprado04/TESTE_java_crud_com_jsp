@@ -14,18 +14,35 @@
         <title>JSP Page</title>
     </head>
     <body>
-       
-        <% 
-            
-            
-            LivroDTO objLivroDTO = new LivroDTO();
-            objLivroDTO.setNome_livro(request.getParameter("nome"));
 
-            LivroDAO objLivroDAO = new LivroDAO();
-            objLivroDAO.CadastrarLivro(objLivroDTO);
+        <%
+
+            try {
+
+                LivroDTO objLivroDTO = new LivroDTO();
+                objLivroDTO.setNome_livro(request.getParameter("nome"));
+
+                LivroDAO objLivroDAO = new LivroDAO();
+                objLivroDAO.CadastrarLivro(objLivroDTO);
+
+                out.println("Livro inserido com sucesso!");
+
+            } catch (Exception e) {
+
+                out.println(e);
+
+            }
+
 
         %>
-        
-        
+
+
+        <br>
+        <form action="listarLivro.jsp" method="POST"> <button type="submit">Listar livro</button></form>
+        <form action="formInserirLivro.jsp" method="POST"> <button type="submit">Inserir livro</button></form> 
+
+
+
+
     </body>
 </html>

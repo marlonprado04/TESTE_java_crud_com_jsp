@@ -22,9 +22,15 @@
                         out.print("Código: " + lista.get(num).getId_livro() + "<br>");
                         out.print("Nome: " + lista.get(num).getNome_livro() + "<br>");
                         
-                        out.print("<a href='frmExcluirLivroVIEW.jsp?id="
+                        
+                        out.print("<a href='formExcluirLivro.jsp?id="
                         + lista.get(num).getId_livro() + "&nome=" 
                         + lista.get(num).getNome_livro() + "'> Excluir</a>");
+                        
+                        
+                        out.print("<a href='formAlterarLivro.jsp?id="
+                        + lista.get(num).getId_livro() + "&nome=" 
+                        + lista.get(num).getNome_livro() + "'> Alterar</a>");
                         out.print("<br><br>");
                     
                     }
@@ -33,6 +39,8 @@
                 }
 
         %>
-            
+        <br>
+        <form action="listarLivro.jsp" method="POST"> <button type="submit">Listar livro</button></form>
+        <form action="formInserirLivro.jsp" method="POST"> <button type="submit">Inserir livro</button></form> 
     </body>
 </html>
